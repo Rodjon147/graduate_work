@@ -1,0 +1,45 @@
+.cont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form_txt{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.form_txt h1{
+    font-size: 35px;
+    margin: 10px 0px;
+}
+
+.form_txt input{
+    margin: 5px 0px;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #505050;
+    border-radius: 2px;
+}
+.form_txt button{
+    margin: 5px 0px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 15px;
+}
+
+.reg_action{
+    display: flex;
+    margin: 5px 0px;
+}
+
+.reg_action p{
+    margin: 0px 10px 4px 0px;
+}
+.reg_action button{
+    background-color: transparent;
+    border: none;
+    color: #1a73e8;
+}
