@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {setUser} from "./store/slices/userSlices";
 import jwtDecode from "jwt-decode"
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 
 
