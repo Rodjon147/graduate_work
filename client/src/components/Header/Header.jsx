@@ -4,9 +4,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {removeUser} from "../../store/slices/userSlices";
 import Modal from "../Modal/Modal"
-import "../Login.css"
-import "../Register.css"
-import AuthModal from "../AuthModal";
+import AuthModal from "../AuthModal/AuthModal";
 
 const Header = () => {
     const {isAuth} = useSelector(state => state.user)

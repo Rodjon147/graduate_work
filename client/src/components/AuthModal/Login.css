@@ -8,7 +8,7 @@
 .form_txt{
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 400px;
 }
 
 .form_txt h1{
