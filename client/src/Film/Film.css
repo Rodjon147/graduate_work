@@ -1,0 +1,96 @@
+.film_container{
+    display: flex;
+    justify-content: center;
+}
+.film_middle{
+    width: 50%;
+}
+.film_title{
+    display: flex;
+}
+.film_title img{
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+}
+.film_data{
+    margin: 0px 20px;
+}
+.film_data h1{
+    margin: 0px;
+}
+.film_estimation{
+    margin: 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.2s;
+}
+.film_estimation p{
+    font-size: 18px;
+    font-weight: 500;
+}
+.film_estimation_action{
+    display: flex;
+    background-color: #c5c5c5;
+    justify-content: space-around;
+    border-radius: 50px;
+    padding: 0px 20px;
+    align-items: center;
+    height: 45px;
+    transition: all 0.2s;
+}
+.film_correctPrint p{
+    display: flex;
+    color: #7e7e7e;
+    justify-content: space-around;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 20px;
+}
+.film_correctPrint p:hover{
+    transition: all 0.2s;
+    font-size: 20px;
+    height: 25px;
+    transform: translate(0px, -2px);
+    color: white;
+}
+.film_correctPrint{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 430px;
+    height: 20px;
+}
+
+.film_currentEstimation{
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+.film_currentEstimation h1{
+    margin: 0px 20px;
+}
+.film_currentEstimation button{
+    padding: 5px 15px;
+    font-size: 16px;
+    border: none;
+    background-color: #dadada;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.film_currentEstimation button:hover{
+    transition: all 0.2s;
+    background-color: #eeeeee;
+}
+
+.film_allEstimation{
+    display: flex;
+    align-items: center;
+}
+.film_allEstimation h1{
+    margin: 15px;
+}

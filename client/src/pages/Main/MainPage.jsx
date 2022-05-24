@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { BsStar} from "react-icons/bs";
 import axios from "axios";
 import "./MainPage.css"
+import {useNavigate} from "react-router-dom";
 
 const MainPage = () => {
 
     const [films, setFilms] = useState([])
-
+    const navigate = useNavigate()
     useEffect( () => {
         const getFilm = async () => {
             await axios.get("/manager/film").then(response => {
@@ -16,8 +17,8 @@ const MainPage = () => {
         getFilm()
     }, [])
 
-    const filmOpenHandler = () => {
-
+    const filmOpenHandler = (e) => {
+        navigate(`/film/${e}`)
     }
 
     return (
@@ -29,7 +30,7 @@ const MainPage = () => {
                         films.map(
                             film => {
                                 return (
-                                    <div key={film.id} className="main_cart_film">
+                                    <div key={film.id} className="main_cart_film" onClick={e => filmOpenHandler(film.id)}>
                                         <img src={"http://localhost:8000/" + film.cover} alt={film.id}/>
                                         <p>{film.name}</p>
                                         <div className="cart_estimation">

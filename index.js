@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8000
 app.use('/public', express.static('public'))
 app.use(express.json({extended: true}))
 app.use('/', require("./routes/auth.routes"))
+app.use('/film', require("./routes/film.routes"))
 app.use('/manager', require("./routes/manager.routes"))
 
 app.listen(PORT, () => {

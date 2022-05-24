@@ -7,6 +7,7 @@ import jwtDecode from "jwt-decode"
 import Header from "./components/Header/Header";
 import NotFoundPage from "./pages/NotFoundPage";
 import Management from "./pages/Settings/Management";
+import Film from "./Film/Film";
 
 function App() {
     const dispatch = useDispatch()
@@ -35,11 +36,13 @@ function App() {
                       <Routes>
                           <Route path="/main" element={<MainPage/>}/>
                           <Route path="/manager" element={<Management/>}/>
+                          <Route path="/film/:id_film" element={<Film/>}/>
                           <Route path="*" element={<NotFoundPage/>}/>
                       </Routes>
                       :
                       <Routes>
                           <Route path="/main" element={<MainPage/>}/>
+                          <Route path="/film/:id_film" element={<Film/>}/>
                           <Route path="*" element={<Navigate to="/main" replace/>}/>
                       </Routes>
               }
