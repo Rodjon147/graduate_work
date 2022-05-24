@@ -1,0 +1,49 @@
+.adduser_form{
+    display: flex;
+    flex-direction: column;
+}
+.adduser_form h1{
+    font-size: 30px;
+    margin: 10px 0px;
+}
+.adduser_form input{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 350px;
+}
+.adduser_form textarea{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 350px;
+    height: 300px;
+    resize: vertical;
+}
+.adduser_form select{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 370px;
+    cursor: pointer;
+}
+.adduser_form button{
+    background-color: rgb(73 146 245);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.5s;
+    padding: 7px 0px;
+    cursor: pointer;
+    margin: 5px 0px;
+    font-size: 15px;
+}

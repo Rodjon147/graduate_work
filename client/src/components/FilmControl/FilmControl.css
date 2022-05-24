@@ -1,0 +1,74 @@
+.createfilm_title{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.createfilm_title button{
+    font-size: 14px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.createfilm_title button:hover{
+    background-color: #1a73e8;
+    color: white;
+}
+.formcontrol_table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: none;
+}
+.formcontrol_table thead tr th{
+    background-color: #505050;
+    color: white;
+    font-weight: 400;
+    border: 1px solid #a6a6a6;
+    font-size: 16px;
+
+}
+.formcontrol_table thead tr td{
+    text-align: center;
+    font-weight: 400;
+    border: none;
+    font-size: 14px;
+    padding: 10px 5px;
+}
+.formcontrol_table thead tr{
+    border-bottom: 1px solid #b7b7b7;
+}
+.formcontrol_table thead tr:last-child{
+    border: none;
+}
+.folmcontrol_description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filmcontrol_img{
+    width: 70px;
+    border-radius: 5px;
+}
+.formcontrol_button_edit{
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 18px;
+}
+.formcontrol_button_edit:hover{
+    background-color: #d3d3d3;
+}
+.formcontrol_button_delete{
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #f53333;
+}
+.formcontrol_button_delete:hover{
+    background-color: #d3d3d3;
+}

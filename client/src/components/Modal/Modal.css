@@ -34,8 +34,10 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
+    pointer-events: none;
 }
 .modal_content.active{
+    pointer-events: all;
     padding: 20px;
     border-radius: 12px;
     background-color: white;

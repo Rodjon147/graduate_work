@@ -1,0 +1,70 @@
+.editFilm_form{
+    display: flex;
+    flex-direction: column;
+}
+.editFilm_form h1{
+    font-size: 30px;
+    margin: 10px 0px;
+}
+.editFilm_form input{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 350px;
+}
+.editFilm_form textarea{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 350px;
+    height: 300px;
+    resize: vertical;
+}
+.editFilm_form select{
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    width: 370px;
+    cursor: pointer;
+}
+.editFilm_form button{
+    background-color: rgb(73 146 245);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.5s;
+    padding: 7px 0px;
+    cursor: pointer;
+    margin: 5px 0px;
+    font-size: 15px;
+}
+.editFilm_cover{
+    display: flex;
+    align-items: center;
+    width: 370px;
+}
+.editFilm_cover img{
+    width: 80px;
+}
+.editFilm_cover input{
+    width: 100%;
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+    display: none;
+    visibility: hidden;
+}
+.editFilm_change{
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px;
+}

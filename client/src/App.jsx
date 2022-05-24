@@ -1,15 +1,16 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainPage from "./pages/MainPage";
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+import MainPage from "./pages/Main/MainPage";
 import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "./store/slices/userSlices";
 import jwtDecode from "jwt-decode"
 import Header from "./components/Header/Header";
 import NotFoundPage from "./pages/NotFoundPage";
-import ControlSite from "./pages/ControlSite";
+import Management from "./pages/Settings/Management";
 
 function App() {
     const dispatch = useDispatch()
+    const {currentUser} = useSelector(state => state.user)
 
     useEffect( () => {
         if (localStorage.getItem('token')) {
@@ -18,23 +19,31 @@ function App() {
                 currentUser: {
                     id: user.id,
                     email: user.email,
-                    username: user.username,
+                    name: user.name,
                     role: user.role
                 }
 
             }))
-            console.log(user.username)
         }
     }, [dispatch])
 
     return (
           <BrowserRouter>
               <Header/>
-              <Routes>
-                  <Route path="/main" element={<MainPage/>}/>
-                  <Route path="/control" element={<ControlSite/>}/>
-                  <Route path="*" element={<NotFoundPage/>}/>
-              </Routes>
+              {
+                  currentUser.role === 'user' ?
+                      <Routes>
+                          <Route path="/main" element={<MainPage/>}/>
+                          <Route path="/manager" element={<Management/>}/>
+                          <Route path="*" element={<NotFoundPage/>}/>
+                      </Routes>
+                      :
+                      <Routes>
+                          <Route path="/main" element={<MainPage/>}/>
+                          <Route path="*" element={<Navigate to="/main" replace/>}/>
+                      </Routes>
+              }
+
           </BrowserRouter>
     );
 }

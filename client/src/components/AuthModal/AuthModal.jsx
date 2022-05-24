@@ -5,20 +5,20 @@ import {setUser} from "../../store/slices/userSlices";
 import  "./AuthModal.css"
 
 const AuthModal = ({formType, modalType, activeModal}) => {
-    const mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/
-    const passRegex = /^[a-zA-Z0-9\-]{0,}$/
+    const mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\\_\\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/
+    const passRegex = /^[a-zA-Z0-9\\-]{0,}$/
     const dispatch = useDispatch()
 
     const [form, setForm] = useState({
         email: '',
-        username: "",
+        name: "",
         password: "",
         confirmPassword: ""
     })
 
     const [error, setError] = useState({
         email: '',
-        username: '',
+        name: '',
         pass: '',
         confirmPass: '',
         Server: ''
@@ -34,17 +34,24 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                     currentUser: {
                         id: response.data.user.id,
                         email: response.data.user.email,
-                        username: response.data.user.username,
+                        name: response.data.user.name,
                         role: response.data.user.role
                     }
 
                 }))
                 localStorage.setItem('token', response.data.token)
                 setForm({
-                    email: '',
-                    username: '',
-                    password: '',
-                    confirmPassword: ''
+                    email: "",
+                    name: "",
+                    password: "",
+                    confirmPassword: ""
+                })
+                setError({
+                    email: "",
+                    name: "",
+                    pass: "",
+                    confirmPass: "",
+                    Server: ""
                 })
                 activeModal(false)
             }
@@ -64,17 +71,24 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                     currentUser: {
                         id: response.data.user.id,
                         email: response.data.user.email,
-                        username: response.data.user.username,
+                        name: response.data.user.name,
                         role: response.data.user.role
                     }
 
                 }))
                 localStorage.setItem('token', response.data.token)
                 setForm({
-                    email: '',
-                    username: '',
-                    password: '',
-                    confirmPassword: ''
+                    email: "",
+                    name: "",
+                    password: "",
+                    confirmPassword: ""
+                })
+                setError({
+                    email: "",
+                    name: "",
+                    pass: "",
+                    confirmPass: "",
+                    Server: ""
                 })
                 activeModal(false)
             }
@@ -140,13 +154,13 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                                         modalType("register")
                                         setForm({
                                             email: "",
-                                            username: "",
+                                            name: "",
                                             password: "",
                                             confirmPassword: ""
                                         })
                                         setError({
                                             email: "",
-                                            username: "",
+                                            name: "",
                                             pass: "",
                                             confirmPass: "",
                                             Server: ""
@@ -179,26 +193,26 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                                    className={error.email ? "error_form_input" : ""}
                             />
                             <p className="error_form_text">{error.email}</p>
-                            <input type="text" name="username" placeholder={"Введите имя"} value={form.username}
+                            <input type="text" name="name" placeholder={"Введите имя"} value={form.name}
                                    onChange={
                                        event => {
                                            setForm({...form, [event.target.name]: event.target.value})
 
                                            event.target.value.length === 0?
-                                               setError({...error, username: "Введите имя", Server: ""})
+                                               setError({...error, name: "Введите имя", Server: ""})
                                                :
                                                event.target.value.length < 4 ?
-                                                   setError({...error, username: "Введите не менее 4 символов", Server: ""})
+                                                   setError({...error, name: "Введите не менее 4 символов", Server: ""})
                                                    :
                                                    event.target.value.length > 10 ?
-                                                       setError({...error, username: "Введите не более 10 символов", Server: ""})
+                                                       setError({...error, name: "Введите не более 10 символов", Server: ""})
                                                        :
-                                                       setError({...error, username: "", Server: ""})
+                                                       setError({...error, name: "", Server: ""})
                                        }
                                    }
-                                   className={error.username ? "error_form_input" : ""}
+                                   className={error.name ? "error_form_input" : ""}
                             />
-                            <p className="error_form_text">{error.username}</p>
+                            <p className="error_form_text">{error.name}</p>
                             <input type="password" name="password" placeholder={"Введите пароль"} value={form.password}
                                    onChange={
                                        event => {
@@ -243,7 +257,7 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                                    className={ error.confirmPass ? "error_form_input" : ""}
                             />
                             <p className="error_form_text">{error.confirmPass}</p>
-                            <button disabled={error.email || error.username || error.pass || error.confirmPass || !form.email || !form.username || !form.password || !form.confirmPassword} onClick={registerHandler} type="button" className="button_login_auth">Создать аккаунт</button>
+                            <button disabled={error.email || error.name || error.pass || error.confirmPass || !form.email || !form.name || !form.password || !form.confirmPassword} onClick={registerHandler} type="button" className="button_login_auth">Создать аккаунт</button>
                             <div className="reg_action">
                                 <p>Уже есть аккаунт?</p>
                                 <button type="button"
@@ -252,13 +266,13 @@ const AuthModal = ({formType, modalType, activeModal}) => {
                                             modalType("login")
                                             setForm({
                                                 email: "",
-                                                username: "",
+                                                name: "",
                                                 password: "",
                                                 confirmPassword: ""
                                             })
                                             setError({
                                                 email: "",
-                                                username: "",
+                                                name: "",
                                                 pass: "",
                                                 confirmPass: "",
                                                 Server: ""
