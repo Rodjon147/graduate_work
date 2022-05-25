@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode"
 import Header from "./components/Header/Header";
 import NotFoundPage from "./pages/NotFoundPage";
 import Management from "./pages/Settings/Management";
-import Film from "./Film/Film";
+import Film from "./pages/Film/Film";
 
 function App() {
     const dispatch = useDispatch()
@@ -32,7 +32,7 @@ function App() {
           <BrowserRouter>
               <Header/>
               {
-                  currentUser.role === 'user' ?
+                  currentUser.role === 'admin' ?
                       <Routes>
                           <Route path="/main" element={<MainPage/>}/>
                           <Route path="/manager" element={<Management/>}/>

@@ -96,3 +96,52 @@
 .film_allEstimation h1{
     margin: 15px;
 }
+.feedback_block{
+    margin: 20px 0px;
+}
+.feedback_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.feedback_title p{
+    cursor: pointer;
+    margin: 0px;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+}
+.feedback_title p:hover{
+    background-color: #d5d5d5;
+}
+.feedback_element{
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c9c9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+.feedback_element p{
+    margin: 0px;
+    padding: 0px;
+}
+.feedback_element_info{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px 10px 0px;
+}
+.feedback_element_info p{
+    margin: 0px;
+    padding: 0px;
+    font-weight: 500;
+}
+.feedback_action{
+    display: flex;
+    justify-content: flex-end;
+}
+.feedback_action p{
+    margin: 0px 5px;
+    cursor: pointer;
+}

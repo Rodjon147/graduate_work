@@ -9,7 +9,7 @@ import { BsFillCaretDownFill, BsFillPersonFill, BsGearFill, BsDoorOpenFill, BsFi
 
 const Header = () => {
     const {isAuth} = useSelector(state => state.user)
-    const {name} = useSelector(state => state.user.currentUser)
+    const {name, role} = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [modalActive, setModalActive] = useState(false)
@@ -74,10 +74,16 @@ const Header = () => {
                                     <BsFillBookmarkFill className="header_icon"/>
                                     <p>Вкладки</p>
                                 </div>
-                                <div className="header_menu_collection" onClick={() => navigate("/manager")}>
-                                    <BsGearFill className="header_icon"/>
-                                    <p>Настройки сайта</p>
-                                </div>
+                                {
+                                    role === "admin"?
+                                        <div className="header_menu_collection" onClick={() => navigate("/manager")}>
+                                            <BsGearFill className="header_icon"/>
+                                            <p>Настройки сайта</p>
+                                        </div>
+                                        :
+                                        <></>
+                                }
+
                                 <div className="header_menu_collection" onClick={logoutHandler}>
                                     <BsDoorOpenFill className="header_icon"/>
                                     <p>Выход</p>

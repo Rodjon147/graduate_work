@@ -34,7 +34,6 @@ router.post("/film/change-img", fileMiddleware.single('cover'),(req, res) => {
     try{
         const cover = req.file
         const {id_film} = req.body
-        console.log(req.file, req.body)
         pool.query("UPDATE `films` SET `cover` = ? WHERE id = ?", [cover.path, id_film], function(err, result){
                 if(err) throw err
                 res.json(true)
