@@ -46,10 +46,18 @@ router.post("/film/change-img", fileMiddleware.single('cover'),(req, res) => {
 router.post("/film/delete", (req, res) => {
     try{
         const {id_film} = req.body
-        pool.query("DELETE FROM films WHERE id = ?", [id_film], function(err, result){
+        pool.query("DELETE FROM feedback WHERE id_film = ?", [id_film], function(err, result){
+            if(err) throw err
+            pool.query("DELETE FROM estimation WHERE id_film = ?", [id_film], function(err, result){
                 if(err) throw err
-                res.json(true)
+                pool.query("DELETE FROM films WHERE id = ?", [id_film], function(err, result){
+                    if(err) throw err
+                    res.json(true)
+                })
             })
+        })
+
+
     }catch (e) {
 
     }

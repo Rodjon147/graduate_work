@@ -2,6 +2,7 @@ import React,{useState, useCallback, useRef} from 'react';
 import Modal from "../Modal/Modal";
 import axios from "axios";
 import "./AddFilm.css"
+import config from "../../config";
 
 const AddFilm = ({modalActive, setActive}) => {
     const [form, setForm] = useState({
@@ -26,7 +27,7 @@ const AddFilm = ({modalActive, setActive}) => {
             data.append('year', form.year)
             data.append('country', form.country)
 
-            await axios.post("/manager/film/upload", data, {
+            await axios.post(config.url +"/manager/film/upload", data, {
                 header: {
                     'content-type': 'multipart/form-data'
                 }

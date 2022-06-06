@@ -3,6 +3,7 @@ import Modal from "../Modal/Modal";
 import axios from "axios";
 import "./EditFilm.css"
 import { BsArrowCounterclockwise } from "react-icons/bs";
+import config from "../../config";
 
 const EditFilm = ({idFilm, setFilm, modalActive, setActive}) => {
     const [form, setForm] = useState({
@@ -22,7 +23,7 @@ const EditFilm = ({idFilm, setFilm, modalActive, setActive}) => {
     useEffect(() => {
         setIdCurrentFilm(idFilm)
         const filmHandler = async () => {
-            await axios.post("/manager/film/current", {id_film: idFilm}).then(response => {
+            await axios.post(config.url + "/manager/film/current", {id_film: idFilm}).then(response => {
                 if(response.data.films){
                     setForm({
                         name: response.data.films.name,
@@ -66,13 +67,13 @@ const EditFilm = ({idFilm, setFilm, modalActive, setActive}) => {
             data.append('cover', img)
             data.append('id_film', idCurrentFilm)
 
-            await axios.post("/manager/film/change-text", {...form, id_film: idCurrentFilm}, {
+            await axios.post(config.url + "/manager/film/change-text", {...form, id_film: idCurrentFilm}, {
                 header: {
                     'content-type': 'multipart/form-data'
                 }
             }).then(() => {
                 if(img){
-                    axios.post("/manager/film/change-img", data, {
+                    axios.post(config.url + "/manager/film/change-img", data, {
                         header: {
                             'content-type': 'multipart/form-data'
                         }
@@ -135,7 +136,8 @@ const EditFilm = ({idFilm, setFilm, modalActive, setActive}) => {
                             img ?
                                 <img src={selectImg} alt={img} className="editFilm_img"/>
                                 :
-                                <img src={"http://localhost:8000/" + cover? cover : ""} alt={cover? cover : ""} className="editFilm_img"/>
+                                cover &&
+                                <img src={config.url + "/" + cover} alt={cover? cover : ""} className="editFilm_img"/>
                         }
 
                         <label htmlFor="firstimg">

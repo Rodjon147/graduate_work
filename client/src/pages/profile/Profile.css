@@ -1,0 +1,115 @@
+.profile_container{
+    display: flex;
+    justify-content: center;
+}
+
+.profile_middle{
+    background-color: white;
+    width: 50%;
+    min-height: 400px;
+    border-radius: 5px;
+    padding: 50px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.profile_middle h1{
+    margin: 0px;
+    padding: 20px 0px;
+}
+.profile_avatar{
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.profile_upload_avatar{
+    width: 250px;
+}
+.profile_not_avatar{
+    width: 250px;
+    height: 250px;
+    color: #5e5e5e;
+    background-color: #d2d2d2;
+    border-radius: 10px;
+}
+.profile_info{
+    width: 60%;
+}
+.profile_info h3{
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+.profile_est{
+    display: flex;
+    align-items: center;
+}
+.profile_est p{
+    margin: 0px 10px 0px 0px;
+}
+.profile_change_button{
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.profile_change_button:hover{
+    background-color: #d9d9d9;
+}
+.profile_input{
+    visibility: hidden;
+    position: absolute;
+}
+.profile_label{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+    border-radius: 10px;
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: rgba(0, 0, 0, 0.29);
+}
+
+.profile_label:hover{
+    opacity: 1;
+}
+.profile_label h1{
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    padding: 48px 0px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    margin: 0px;
+    transition: all .2s;
+}
+.profile_label h1:hover{
+    font-size: 25px;
+}
+.profile_label h2{
+    cursor: pointer;
+    border-radius: 0px 0px 10px 10px;
+    padding: 50px 0px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all .2s;
+}
+.profile_label h2:hover{
+    font-size: 25px;
+}
+
+.profile_icon_camera{
+    margin: 3px 0px 0px 8px;
+}

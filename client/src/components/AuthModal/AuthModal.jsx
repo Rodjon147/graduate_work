@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 import {setUser} from "../../store/slices/userSlices";
 import  "./AuthModal.css"
+import config from "../../config";
 
 const AuthModal = ({formType, modalType, activeModal}) => {
     const mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\\_\\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/
@@ -26,7 +27,7 @@ const AuthModal = ({formType, modalType, activeModal}) => {
 
     const loginHandler = async () => {
         try{
-            const response = await axios.post('/login', {...form})
+            const response = await axios.post(config.url +'/login', {...form})
             if(response.data.message){
                 setError({...error, Server: response.data.message})
             }else{
@@ -63,7 +64,7 @@ const AuthModal = ({formType, modalType, activeModal}) => {
 
     const registerHandler = async () => {
         try{
-            const response = await axios.post('/register', {...form})
+            const response = await axios.post(config.url + '/register', {...form})
             if(response.data.message){
                 setError({...error, Server: response.data.message})
             }else{

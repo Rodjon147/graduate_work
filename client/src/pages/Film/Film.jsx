@@ -5,6 +5,8 @@ import NotFoundPage from "../NotFoundPage";
 import "./Film.css"
 import {useSelector} from "react-redux";
 import FeedbackAdd from "../../components/FeedbackAdd/FeedbackAdd";
+import config from "../../config";
+import {BsPersonFill} from "react-icons/bs";
 
 const Film = () => {
     const {id} = useSelector(state => state.user.currentUser)
@@ -16,10 +18,10 @@ const Film = () => {
 
     useEffect(() => {
         const getFilm = async () => {
-            await axios.post(`/film/get/${id_film}`, {id_user: id}).then(response => {
+            await axios.post(config.url +`/film/get/${id_film}`, {id_user: id}).then(response => {
                 setFilms(response.data.film)
             })
-            await axios.post("/feedback/get", {id_film: id_film, id_user: id}).then(response => {
+            await axios.post(config.url + "/feedback/get", {id_film: id_film, id_user: id}).then(response => {
                 setFeedbacks(response.data.feedback)
             })
         }
@@ -28,7 +30,7 @@ const Film = () => {
 
     useEffect(() => {
         const getFeedback = async () => {
-            await axios.post("/feedback/get", {id_film: id_film, id_user: id}).then(response => {
+            await axios.post(config.url + "/feedback/get", {id_film: id_film, id_user: id}).then(response => {
                 setFeedbacks(response.data.feedback)
             })
         }
@@ -36,13 +38,13 @@ const Film = () => {
     }, [id_film, id, modalActive])
 
     const estHandler = async (e) => {
-        await axios.post("/film/estimation", {est: e, id_film: id_film, id_user: id}).then(response => {
+        await axios.post(config.url + "/film/estimation", {est: e, id_film: id_film, id_user: id}).then(response => {
             setFilms(response.data.film)
         })
     }
 
     const deleteEstHandler = async () => {
-        await axios.post("/film/delete", { id_film: id_film, id_user: id}).then(response => {
+        await axios.post(config.url + "/film/delete", { id_film: id_film, id_user: id}).then(response => {
             setFilms(response.data.film)
         })
     }
@@ -53,7 +55,7 @@ const Film = () => {
     }
 
     const deleteFeedbackHandler = async (e) => {
-        await axios.post("/feedback/delete", {id_feedback: e, id_film: id_film}).then(response => {
+        await axios.post(config.url + "/feedback/delete", {id_feedback: e, id_film: id_film}).then(response => {
             setFeedbacks(response.data.feedback)
         })
     }
@@ -64,7 +66,7 @@ const Film = () => {
                 films ?
                     <div className="film_middle">
                         <div className="film_title">
-                            <img src={films.cover ? "http://localhost:8000/" + films.cover : ""} alt={films.id}/>
+                            <img src={films.cover ? config.url + "/" + films.cover : ""} alt={films.id}/>
                             <div className="film_data">
                                 <h1>{films.name}</h1>
                                 <p><b>Страна:</b> {films.country}</p>
@@ -129,42 +131,53 @@ const Film = () => {
 
                         <div className="feedback_block">
                             <div className="feedback_title">
+
                                 <h2>Отзывы</h2>
                                 {
-                                    id?
-                                        <p onClick={event => feedbackAddModalHandler(films.id)}>Написать отзыв</p>
-                                        :
-                                        <></>
+                                    id && (<p onClick={event => feedbackAddModalHandler(films.id)}>Написать отзыв</p>)
                                 }
 
                             </div>
                             {
-                                feedbacks.map(
-                                    feedback => {
-                                        return(
-                                            <div key={feedback.id}>
-                                                <div className="feedback_element">
-                                                    <div className="feedback_element_info">
-                                                        <p>{feedback.name}</p>
-                                                        <p>{new Date(feedback.date).getFullYear()}-{new Date(feedback.date).getMonth()+1}-{new Date(feedback.date).getDate()} {new Date(feedback.date).getHours()}:{new Date(feedback.date).getMinutes()}:{new Date(feedback.date).getSeconds()}</p>
-                                                    </div>
-                                                    <p>
-                                                        {feedback.feedback}
-                                                    </p>
-                                                    {
-                                                        feedback.id_user === id?
-                                                            <div className="feedback_action">
-                                                                <p onClick={e => deleteFeedbackHandler(feedback.id)}>Удалить</p>
-                                                            </div>
-                                                            :
-                                                            <></>
-                                                    }
+                                feedbacks.length > 0 ?
+                                    feedbacks.map(
+                                        feedback => {
+                                            return(
+                                                <div key={feedback.id}>
+                                                    <div className="feedback_element">
+                                                        <div className="feedback_element_info">
+                                                            <div className="feedback_avatar_cont">
+                                                                {
+                                                                    feedback.avatar === "null"?
+                                                                        <BsPersonFill className="feedback_not_avatar"/>
+                                                                        :
+                                                                        <img src={config.url + '/' + feedback.avatar} alt="" className="feedback_avatar"/>
+                                                                }
 
+                                                                <p>{feedback.name}</p>
+                                                            </div>
+
+                                                            <p>{new Date(feedback.date).getFullYear()}-{new Date(feedback.date).getMonth()+1}-{new Date(feedback.date).getDate()} {new Date(feedback.date).getHours()}:{new Date(feedback.date).getMinutes()}:{new Date(feedback.date).getSeconds()}</p>
+                                                        </div>
+                                                        <p>
+                                                            {feedback.feedback}
+                                                        </p>
+                                                        {
+                                                            feedback.id_user === id?
+                                                                <div className="feedback_action">
+                                                                    <p onClick={e => deleteFeedbackHandler(feedback.id)}>Удалить</p>
+                                                                </div>
+                                                                :
+                                                                <></>
+                                                        }
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
-                                    }
-                                )
+                                            )
+                                        }
+                                    )
+                                    :
+                                    <p>Нет отзывов</p>
                             }
 
                         </div>

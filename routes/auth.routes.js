@@ -78,4 +78,18 @@ router.post("/login",(req, res) => {
         }
 })
 
+router.post("/user",(req, res) => {
+    try{
+        const {id_user} = req.body
+        pool.query("SELECT id, name, email, role FROM users WHERE id = ?", [id_user], function(err, result){
+            if(err) throw err
+            const user = result[0]
+            res.json({user})
+        })
+    }catch (e) {
+        console.log(e)
+        res.send({message: "Server error"})
+    }
+})
+
 module.exports = router

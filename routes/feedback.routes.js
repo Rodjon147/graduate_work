@@ -6,7 +6,7 @@ const router = express.Router()
 router.post("/get",(req, res) => {
     try{
         const {id_film} = req.body
-        pool.query("SELECT *, (SELECT name FROM users WHERE id = feedback.id_user) as name, (SELECT id FROM users WHERE id = feedback.id_user) as id_user FROM feedback WHERE id_film = ?", [id_film], (err, result) => {
+        pool.query("SELECT *, (SELECT name FROM users WHERE id = feedback.id_user) as name, (SELECT avatar FROM users WHERE id = feedback.id_user) as avatar, (SELECT id FROM users WHERE id = feedback.id_user) as id_user FROM feedback WHERE id_film = ?", [id_film], (err, result) => {
             if (err) throw err
             const feedback = result
             res.json({feedback})
@@ -36,7 +36,7 @@ router.post("/delete",(req, res) => {
 
         pool.query("DELETE FROM `feedback` WHERE `id` = ?", [id_feedback], (err, result) => {
             if (err) throw err
-            pool.query("SELECT *, (SELECT name FROM users WHERE id = feedback.id_user) as name, (SELECT id FROM users WHERE id = feedback.id_user) as id_user FROM feedback WHERE id_film = ?", [id_film], (err, result) => {
+            pool.query("SELECT *, (SELECT name FROM users WHERE id = feedback.id_user) as name, (SELECT avatar FROM users WHERE id = feedback.id_user) as avatar, (SELECT id FROM users WHERE id = feedback.id_user) as id_user FROM feedback WHERE id_film = ?", [id_film], (err, result) => {
                 if (err) throw err
                 const feedback = result
                 res.json({feedback})

@@ -1,0 +1,49 @@
+.collection_container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.collection_container h1{
+    margin: 0px 0px 30px 0px;
+    padding: 0px;
+}
+.collection_container input{
+    width: 400px;
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+}
+.collection_container input:focus{
+    outline: none;
+    background-color: rgb(206, 206, 206);
+}
+.collection_container textarea{
+    width: 400px;
+    height: 400px;
+    margin: 5px 0px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+    resize: none;
+}
+.collection_container textarea:focus{
+    outline: none;
+    background-color: rgb(206, 206, 206);
+}
+
+.collection_container button{
+    background-color: rgb(73 146 245);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.5s;
+    padding: 7px 0px;
+    margin: 5px 0px 0px 0px;
+    font-size: 15px;
+    cursor: pointer;
+}

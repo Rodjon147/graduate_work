@@ -3,23 +3,24 @@ import "./UserControl.css"
 import {BsFillPersonFill, BsFillTrashFill} from "react-icons/bs";
 import axios from "axios";
 import "./UserControl.css"
+import config from "../../config";
 
 const UserControl = () => {
 
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        axios.get("/manager/user").then(response => {
+        axios.get(config.url + "/manager/user").then(response => {
             setUsers(response.data.users)
         })
     }, [])
 
     const userDeleteHandler = async (event) => {
         function deleteUserAccount(){
-            return axios.post("/manager/user/delete", {id_user: event})
+            return axios.post(config.url + "/manager/user/delete", {id_user: event})
         }
         function getUserAccount(){
-            return axios.get("/manager/user").then(response => {
+            return axios.get(config.url + "/manager/user").then(response => {
                 setUsers(response.data.users)
             })
         }
@@ -48,7 +49,7 @@ const UserControl = () => {
                                         <td>
                                             {
                                                 user.avatar !== "null" ?
-                                                    <img src={"http://localhost:8000/" + user.avatar} alt={user.id} className="userControl_img"/>
+                                                    <img src={config.url +"/" + user.avatar} alt={user.id} className="userControl_img"/>
                                                     :
                                                     <BsFillPersonFill className="userControl_noImg"/>
                                             }

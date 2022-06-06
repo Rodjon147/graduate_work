@@ -3,6 +3,7 @@ import { BsStar} from "react-icons/bs";
 import axios from "axios";
 import "./MainPage.css"
 import {useNavigate} from "react-router-dom";
+import config from "../../config"
 
 const MainPage = () => {
 
@@ -10,7 +11,7 @@ const MainPage = () => {
     const navigate = useNavigate()
     useEffect( () => {
         const getFilm = async () => {
-            await axios.get("/manager/film").then(response => {
+            await axios.get(config.url + "/manager/film").then(response => {
                 setFilms(response.data.films)
             })
         }
@@ -31,7 +32,7 @@ const MainPage = () => {
                             film => {
                                 return (
                                     <div key={film.id} className="main_cart_film" onClick={e => filmOpenHandler(film.id)}>
-                                        <img src={"http://localhost:8000/" + film.cover} alt={film.id}/>
+                                        <img src={config.url + "/" + film.cover} alt={film.id}/>
                                         <p>{film.name}</p>
                                         <div className="cart_estimation">
                                             <p>{film.estimation}</p>

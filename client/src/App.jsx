@@ -8,37 +8,59 @@ import Header from "./components/Header/Header";
 import NotFoundPage from "./pages/NotFoundPage";
 import Management from "./pages/Settings/Management";
 import Film from "./pages/Film/Film";
+import Profile from "./pages/profile/Profile";
+import axios from "axios";
+import config from "./config";
 
 function App() {
     const dispatch = useDispatch()
-    const {currentUser} = useSelector(state => state.user)
+    const {currentUser, isAuth} = useSelector(state => state.user)
 
     useEffect( () => {
         if (localStorage.getItem('token')) {
-            const user = jwtDecode(localStorage.getItem('token'))
-            dispatch(setUser({
-                currentUser: {
-                    id: user.id,
-                    email: user.email,
-                    name: user.name,
-                    role: user.role
-                }
+            const getUser = async () => {
+                try {
+                    const user = jwtDecode(localStorage.getItem('token'))
+                    await axios.post(config.url + "/user", {id_user: user.id}).then(response => {
+                        dispatch(setUser({
+                            currentUser: {
+                                id: response.data.user.id,
+                                email: response.data.user.email,
+                                name: response.data.user.name,
+                                role: response.data.user.role
+                            }
 
-            }))
+                        }))
+                    })
+                }catch (e) {
+
+                }
+            }
+            getUser()
         }
+
     }, [dispatch])
 
     return (
           <BrowserRouter>
               <Header/>
               {
-                  currentUser.role === 'admin' ?
-                      <Routes>
-                          <Route path="/main" element={<MainPage/>}/>
-                          <Route path="/manager" element={<Management/>}/>
-                          <Route path="/film/:id_film" element={<Film/>}/>
-                          <Route path="*" element={<NotFoundPage/>}/>
-                      </Routes>
+                  isAuth ?
+                          currentUser.role === 'admin' ?
+                              <Routes>
+                                  <Route path="/main" element={<MainPage/>}/>
+                                  <Route path="/manager" element={<Management/>}/>
+                                  <Route path="/profile" element={<Profile/>}/>
+                                  <Route path="/film/:id_film" element={<Film/>}/>
+                                  <Route path="*" element={<NotFoundPage/>}/>
+                              </Routes>
+                              :
+                              <Routes>
+                                  <Route path="/main" element={<MainPage/>}/>
+                                  <Route path="/film/:id_film" element={<Film/>}/>
+                                  <Route path="/profile" element={<Profile/>}/>
+                                  <Route path="*" element={<Navigate to="/main" replace/>}/>
+                              </Routes>
                       :
                       <Routes>
                           <Route path="/main" element={<MainPage/>}/>
@@ -46,6 +68,7 @@ function App() {
                           <Route path="*" element={<Navigate to="/main" replace/>}/>
                       </Routes>
               }
+
 
           </BrowserRouter>
     );

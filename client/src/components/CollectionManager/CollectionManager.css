@@ -1,0 +1,26 @@
+.coll_container{
+    width: 500px;
+    padding: 30px;
+}
+.coll_container h1{
+    margin: 0px 0px 20px 0px;
+    padding: 0px;
+}
+.coll_items{
+    background-color: #eaeaea;
+    padding: 10px;
+}
+.coll_item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0px;
+}
+.coll_item img{
+    width: 50px;
+}
+.coll_item button{
+    padding: 5px 10px;
+    font-size: 15px;
+}

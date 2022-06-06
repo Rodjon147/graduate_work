@@ -6,6 +6,7 @@ import {removeUser} from "../../store/slices/userSlices";
 import Modal from "../Modal/Modal"
 import AuthModal from "../AuthModal/AuthModal";
 import { BsFillCaretDownFill, BsFillPersonFill, BsGearFill, BsDoorOpenFill, BsFillBookmarkFill } from "react-icons/bs";
+import Search from "../Search/Search";
 
 const Header = () => {
     const {isAuth} = useSelector(state => state.user)
@@ -36,6 +37,10 @@ const Header = () => {
         setModalActive(e)
     }
 
+    const profileHandler = () => {
+        navigate("/profile")
+    }
+
     const logoutHandler = () => {
         dispatch(removeUser())
         localStorage.removeItem('token')
@@ -50,59 +55,56 @@ const Header = () => {
             <div className="header_container">
                 <div className="header_middle">
                     <Link to="/main" className="header_title">Nepenf <p>created</p></Link>
-                    <form className="search_form">
-                        <input type="text" placeholder="Поиск" className="searchInput"/>
-                        <div className="livesearch">
+                    <Search/>
+                    {
+                        isAuth ?
+                            <div className="header_user_action">
+                                <div className="header_user_button" ref={btnRef} onClick={() => setMenu(!menu)}>
+                                    <h4>{name}</h4>
+                                    <BsFillCaretDownFill/>
+                                </div>
 
-                        </div>
-                    </form>
+                                <div className={menu? "header_menu show" : "header_menu"}>
+                                    <div className="header_menu_collection" onClick={profileHandler}>
+                                        <BsFillPersonFill className="header_icon"/>
+                                        <p>Личный кабинет</p>
+                                    </div>
+                                    <div className="header_menu_collection">
+                                        <BsFillBookmarkFill className="header_icon"/>
+                                        <p>Вкладки</p>
+                                    </div>
+                                    {
+                                        role === "admin"?
+                                            <div className="header_menu_collection" onClick={() => navigate("/manager")}>
+                                                <BsGearFill className="header_icon"/>
+                                                <p>Настройки сайта</p>
+                                            </div>
+                                            :
+                                            <></>
+                                    }
+
+                                    <div className="header_menu_collection" onClick={logoutHandler}>
+                                        <BsDoorOpenFill className="header_icon"/>
+                                        <p>Выход</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            :
+                            <div className="header_action">
+                                <p type="button" onClick={() => {
+                                    setModalActive(true)
+                                    setFormType('login')
+                                }} >Войти</p>
+                                <p type="button" onClick={() => {
+                                    setModalActive(true)
+                                    setFormType('register')
+                                }}>Создать аккаунт</p>
+                            </div>
+                    }
                 </div>
-                {
-                    isAuth ?
-                        <div className="header_user_action">
-                            <div className="header_user_button" ref={btnRef} onClick={() => setMenu(!menu)}>
-                                <h4>{name}</h4>
-                                <BsFillCaretDownFill/>
-                            </div>
 
-                            <div className={menu? "header_menu show" : "header_menu"}>
-                                <div className="header_menu_collection">
-                                    <BsFillPersonFill className="header_icon"/>
-                                    <p>Личный кабинет</p>
-                                </div>
-                                <div className="header_menu_collection">
-                                    <BsFillBookmarkFill className="header_icon"/>
-                                    <p>Вкладки</p>
-                                </div>
-                                {
-                                    role === "admin"?
-                                        <div className="header_menu_collection" onClick={() => navigate("/manager")}>
-                                            <BsGearFill className="header_icon"/>
-                                            <p>Настройки сайта</p>
-                                        </div>
-                                        :
-                                        <></>
-                                }
 
-                                <div className="header_menu_collection" onClick={logoutHandler}>
-                                    <BsDoorOpenFill className="header_icon"/>
-                                    <p>Выход</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        :
-                        <div className="header_action">
-                            <p type="button" onClick={() => {
-                                setModalActive(true)
-                                setFormType('login')
-                            }} >Войти</p>
-                            <p type="button" onClick={() => {
-                                setModalActive(true)
-                                setFormType('register')
-                            }}>Создать аккаунт</p>
-                        </div>
-                }
             </div>
         </>
     );

@@ -4,6 +4,7 @@ import AddFilm from "../AddFilm/AddFilm";
 import axios from "axios";
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 import EditFilm from "../EditFilm/EditFilm";
+import config from "../../config";
 
 const CreateFilm = () => {
     const [modalActive, setModalActive] = useState(false)
@@ -12,10 +13,13 @@ const CreateFilm = () => {
     const [currentFilms, setCurrentFilms] = useState(1)
 
     useEffect(() => {
-        axios.get("/manager/film").then(response => {
-            setFilms(response.data.films)
-        })
-    }, [modalActive, editActive, currentFilms])
+        const getFilms = async () => {
+            await axios.get(config.url + "/manager/film").then(response => {
+                setFilms(response.data.films)
+            })
+        }
+        getFilms()
+    }, [films, modalActive, editActive, currentFilms])
 
     const filmEditHandler = (id) => {
         setCurrentFilms(id)
@@ -23,15 +27,7 @@ const CreateFilm = () => {
     }
 
     const filmDeleteHandler = async (event) => {
-        function deleteFilm(){
-            return axios.post("/manager/film/delete", {id_film: event})
-        }
-        function getFilm(){
-            return axios.get("/manager/film").then(response => {
-                setFilms(response.data.films)
-            })
-        }
-        await axios.all([deleteFilm(), getFilm()])
+        await axios.post(config.url + "/manager/film/delete", {id_film: event})
     }
 
     return (
@@ -61,7 +57,7 @@ const CreateFilm = () => {
                                 film => {
                                     return (
                                         <tr key={film.id} className="filmcontrol_tr">
-                                            <td> <img src={"http://localhost:8000/" + film.cover} alt={film.id} className="filmcontrol_img"/> </td>
+                                            <td> <img src={config.url +"/" + film.cover} alt={film.id} className="filmcontrol_img"/> </td>
                                             <td>{film.name}</td>
                                             <td className="folmcontrol_description">{film.description}</td>
                                             <td>{film.genre}</td>

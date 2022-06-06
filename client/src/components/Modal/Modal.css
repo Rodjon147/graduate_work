@@ -27,7 +27,6 @@
     padding: 20px;
     border-radius: 12px;
     background-color: white;
-    width: 400px;
     opacity: 0;
     transition: 0.3s;
     display: flex;

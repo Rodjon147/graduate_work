@@ -3,6 +3,7 @@ import Modal from "../Modal/Modal";
 import "./FeedbackAdd.css"
 import axios from "axios";
 import {useSelector} from "react-redux";
+import config from "../../config";
 
 const FeedbackAdd = ({idFilm, modalActive, setModalActive}) => {
     const {id} = useSelector(state => state.user.currentUser)
@@ -10,7 +11,7 @@ const FeedbackAdd = ({idFilm, modalActive, setModalActive}) => {
 
     const FeedbackAdd = async (e) => {
         e.preventDefault()
-        await axios.post("/feedback/add", {feedback, id_film: idFilm, id_user: id}).then(() => {
+        await axios.post(config.url + "/feedback/add", {feedback, id_film: idFilm, id_user: id}).then(() => {
             setModalActive(false)
         })
     }

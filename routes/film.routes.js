@@ -47,7 +47,6 @@ router.post("/estimation",(req, res) => {
 router.post("/delete",(req, res) => {
     try{
         const {id_film, id_user} = req.body
-
         pool.query("DELETE FROM `estimation` WHERE id_film = ? AND id_user = ?", [id_film, id_user], (err, result) => {
             if (err) throw err
             pool.query("SELECT ROUND(SUM(estimation)/COUNT(estimation), 1) AS estimation, (SELECT COUNT(estimation) FROM estimation WHERE id_film = ?) as countreview FROM estimation WHERE id_film = ?",
