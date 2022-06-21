@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Modal from "../Modal/Modal";
 import "./AddCollection.css"
 import config from "../../config"
@@ -9,6 +9,13 @@ const AddCollection = ({activeModal, setActiveModal}) => {
         name: '',
         description: ''
     })
+
+    useEffect(() => {
+        setCollectionsForm({
+            name: '',
+            description: ''
+        })
+    }, [activeModal])
 
     const addCollectionsHandler = async () => {
         try {

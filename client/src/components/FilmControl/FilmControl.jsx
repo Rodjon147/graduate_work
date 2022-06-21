@@ -19,7 +19,7 @@ const CreateFilm = () => {
             })
         }
         getFilms()
-    }, [films, modalActive, editActive, currentFilms])
+    }, [modalActive, editActive])
 
     const filmEditHandler = (id) => {
         setCurrentFilms(id)
@@ -28,6 +28,9 @@ const CreateFilm = () => {
 
     const filmDeleteHandler = async (event) => {
         await axios.post(config.url + "/manager/film/delete", {id_film: event})
+        await axios.get(config.url + "/manager/film").then(response => {
+            setFilms(response.data.films)
+        })
     }
 
     return (

@@ -10,7 +10,7 @@ const CollectionManager = ({currentColl, activeModal, setActiveModal}) => {
     useEffect(() => {
         const searchHandler = async () => {
             try {
-                await axios.get(config.url + "/manager/film").then(response => {
+                await axios.post(config.url + "/collection/film", {id_coll: currentColl}).then(response => {
                     setItemsList(response.data.films)
                 })
             }catch (e) {
@@ -18,7 +18,30 @@ const CollectionManager = ({currentColl, activeModal, setActiveModal}) => {
             }
         }
         searchHandler()
-    }, [itemsList])
+    }, [currentColl, activeModal])
+
+
+    const contentHandler = async (id_film) => {
+        try {
+            await axios.post(config.url + "/collection/content", {id_coll: currentColl, id_film})
+            await axios.post(config.url + "/collection/film", {id_coll: currentColl}).then(response => {
+                setItemsList(response.data.films)
+            })
+        }catch (e) {
+
+        }
+    }
+
+    const deleteContentHandler = async (id_film) => {
+        try {
+            await axios.post(config.url + "/collection/delete-content", {id_coll: currentColl, id_film})
+            await axios.post(config.url + "/collection/film", {id_coll: currentColl}).then(response => {
+                setItemsList(response.data.films)
+            })
+        }catch (e) {
+
+        }
+    }
 
     return (
         <Modal active={activeModal} setActive={setActiveModal}>
@@ -35,7 +58,13 @@ const CollectionManager = ({currentColl, activeModal, setActiveModal}) => {
                                             <h3>{item.name}</h3>
                                             <p>{item.estimation}</p>
                                         </div>
-                                        <button>Добавить</button>
+                                        {
+                                            item.content ?
+                                                <button onClick={() => deleteContentHandler(item.id)}>Удалить</button>
+                                                :
+                                                <button onClick={() => contentHandler(item.id)}>Добавить</button>
+                                        }
+
                                     </div>
                                 )
                             }

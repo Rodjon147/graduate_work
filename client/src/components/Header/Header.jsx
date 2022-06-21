@@ -69,10 +69,7 @@ const Header = () => {
                                         <BsFillPersonFill className="header_icon"/>
                                         <p>Личный кабинет</p>
                                     </div>
-                                    <div className="header_menu_collection">
-                                        <BsFillBookmarkFill className="header_icon"/>
-                                        <p>Вкладки</p>
-                                    </div>
+
                                     {
                                         role === "admin"?
                                             <div className="header_menu_collection" onClick={() => navigate("/manager")}>

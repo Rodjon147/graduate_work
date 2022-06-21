@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import FeedbackAdd from "../../components/FeedbackAdd/FeedbackAdd";
 import config from "../../config";
 import {BsPersonFill} from "react-icons/bs";
+import { FaUserAlt } from "react-icons/fa";
 
 const Film = () => {
     const {id} = useSelector(state => state.user.currentUser)
@@ -76,6 +77,7 @@ const Film = () => {
                                 <div className="film_allEstimation">
                                     <h3>Общая оценка фильма</h3>
                                     <h1>{films.estimation}</h1>
+                                    <FaUserAlt/>
                                     <p>{films.countUsers}</p>
                                 </div>
                                 {

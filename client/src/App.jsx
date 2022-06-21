@@ -11,6 +11,8 @@ import Film from "./pages/Film/Film";
 import Profile from "./pages/profile/Profile";
 import axios from "axios";
 import config from "./config";
+import CurrentColl from "./pages/CurrentColl/CurrentColl";
+import CurrentRatingFilm from "./pages/CurrentRatingFilm/CurrentRatingFilm";
 
 function App() {
     const dispatch = useDispatch()
@@ -51,6 +53,8 @@ function App() {
                                   <Route path="/main" element={<MainPage/>}/>
                                   <Route path="/manager" element={<Management/>}/>
                                   <Route path="/profile" element={<Profile/>}/>
+                                  <Route path="/collection/:id_coll" element={<CurrentColl/>}/>
+                                  <Route path="/collection/rating" element={<CurrentRatingFilm/>}/>
                                   <Route path="/film/:id_film" element={<Film/>}/>
                                   <Route path="*" element={<NotFoundPage/>}/>
                               </Routes>
@@ -58,6 +62,8 @@ function App() {
                               <Routes>
                                   <Route path="/main" element={<MainPage/>}/>
                                   <Route path="/film/:id_film" element={<Film/>}/>
+                                  <Route path="/collection/:id_coll" element={<CurrentColl/>}/>
+                                  <Route path="/collection/rating" element={<CurrentRatingFilm/>}/>
                                   <Route path="/profile" element={<Profile/>}/>
                                   <Route path="*" element={<Navigate to="/main" replace/>}/>
                               </Routes>
@@ -65,6 +71,8 @@ function App() {
                       <Routes>
                           <Route path="/main" element={<MainPage/>}/>
                           <Route path="/film/:id_film" element={<Film/>}/>
+                          <Route path="/collection/:id_coll" element={<CurrentColl/>}/>
+                          <Route path="/collection/rating" element={<CurrentRatingFilm/>}/>
                           <Route path="*" element={<Navigate to="/main" replace/>}/>
                       </Routes>
               }

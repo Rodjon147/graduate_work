@@ -90,10 +90,17 @@ router.get("/user", (req, res) => {
 })
 router.post("/user/delete", (req, res) => {
     const {id_user} = req.body
-    pool.query("DELETE FROM users WHERE id = ?", [id_user], function(err, result){
+    pool.query("DELETE FROM estimation WHERE id_user = ?", [id_user], function(err, result){
         if(err) throw err
-        res.json(true)
+        pool.query("DELETE FROM feedback WHERE id_user = ?", [id_user], function(err, result){
+            if(err) throw err
+            pool.query("DELETE FROM users WHERE id = ?", [id_user], function(err, result){
+                if(err) throw err
+                res.json(true)
+            })
+        })
     })
+
 })
 
 module.exports = router

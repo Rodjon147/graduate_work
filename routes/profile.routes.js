@@ -61,6 +61,20 @@ router.post("/change",(req, res) => {
     }
 })
 
+router.post("/estimation",(req, res) => {
+    try{
+        const { id_user } = req.body
+        pool.query("SELECT *, (SELECT name FROM films WHERE id = estimation.id_film) as name, (SELECT cover FROM films WHERE id = estimation.id_film) as cover, (SELECT films.estimation FROM films WHERE id = estimation.id_film) as estimations, (SELECT films.countUsers FROM films WHERE id = estimation.id_film) as countUsers, (SELECT films.year FROM films WHERE id = estimation.id_film) as year FROM estimation WHERE `id_user` = ?", [id_user], function(err, result){
+            if(err) throw err
+            const films = result
+            res.json({films})
+        })
+    }catch (e) {
+        console.log(e)
+        res.send({message: "Server error"})
+    }
+})
+
 
 
 module.exports = router

@@ -141,7 +141,8 @@ const EditFilm = ({idFilm, setFilm, modalActive, setActive}) => {
                         }
 
                         <label htmlFor="firstimg">
-                            <BsArrowCounterclockwise className="editFilm_change"/>
+                            <p>{cover? cover.split("public\\images\\") : null}</p>
+                            <b>Обновить</b>
                         </label>
 
                         <input id="firstimg" type="file" ref={fileInput} onChange={event => {

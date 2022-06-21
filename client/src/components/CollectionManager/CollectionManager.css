@@ -8,7 +8,7 @@
 }
 .coll_items{
     background-color: #eaeaea;
-    padding: 10px;
+    padding: 10px 20px;
 }
 .coll_item{
     display: flex;
@@ -19,8 +19,19 @@
 }
 .coll_item img{
     width: 50px;
+    border-radius: 5px;
+    margin: 0px 10px 0px 0px;
 }
 .coll_item button{
     padding: 5px 10px;
     font-size: 15px;
+    cursor: pointer;
+    transition: all .2s;
+    border: none;
+    border-radius: 5px;
+    background-color: #bbbbbb;
+}
+.coll_item button:hover{
+    background-color: #1a73e8;
+    color: white;
 }

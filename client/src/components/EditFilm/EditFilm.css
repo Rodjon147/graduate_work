@@ -51,9 +51,25 @@
     display: flex;
     align-items: center;
     width: 370px;
+    justify-content: space-around;
+}
+.editFilm_cover label{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 330px;
+    cursor: pointer;
+}
+.editFilm_cover p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 60%;
 }
 .editFilm_cover img{
-    width: 80px;
+    width: 30px;
+    border-radius: 5px;
+    margin: 0px 10px 0px 0px;
 }
 .editFilm_cover input{
     width: 100%;

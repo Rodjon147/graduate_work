@@ -96,6 +96,9 @@
 .film_allEstimation h1{
     margin: 15px;
 }
+.film_allEstimation p{
+    margin: 6px;
+}
 .feedback_block{
     margin: 20px 0px;
 }

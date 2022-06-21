@@ -15,6 +15,7 @@ app.use('/feedback', require("./routes/feedback.routes"))
 app.use('/manager', require("./routes/manager.routes"))
 app.use('/profile', require("./routes/profile.routes"))
 app.use('/collection', require("./routes/collection.routes"))
+app.use('/rating', require("./routes/rating.routes"))
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT} port`)
